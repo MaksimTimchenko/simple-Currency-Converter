@@ -11,7 +11,8 @@ const input = document.querySelector('#input'),
 let rates = {
     USD: 0,
     EUR: 0,
-    GBR:0
+    GBR:0,
+    PLN: 0
 }
 
 const fetchData = async () => {
@@ -20,12 +21,13 @@ const fetchData = async () => {
    
     console.log(data);
 
-    const {USD, EUR, GBP, } = data.Valute;
+    const {USD, EUR, GBP, PLN} = data.Valute;
 
     rates = {
        USD: USD.Value,
        EUR: EUR.Value,
-       GBP: GBP.Value 
+       GBP: GBP.Value,
+       PLN: PLN.Value 
     }
 
     
@@ -36,13 +38,18 @@ const fetchData = async () => {
     
 }
 
-input.oninput = () => {  
+input.oninput = convertValute;
+selectOutput.oninput = convertValute;
+
+function convertValute () {
     result.value = ((input.value * rates[selectInput.value] )/ rates[selectOutput.value]).toFixed(2)
 }
 
 const renderComponent = (div,valute) => {
    return div.innerHTML = valute.Value.toFixed(2);
 }
+
+
 
 
 
