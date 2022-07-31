@@ -10,4 +10,4 @@ Currency-Converter is a simple app made with HTML, CSS, Javascript,  and Bootstr
 * Currency Database API
 
 
-## You can try it live <a href = "https://maksimtimchenko.github.io/simple-Currency-Converter/">simple-Currency-Converter</a>
+## You can try it live <a href = "https://maksimtimchenko.github.io/simple-Currency-Converter/" target = "_blanc">simple-Currency-Converter</a>
