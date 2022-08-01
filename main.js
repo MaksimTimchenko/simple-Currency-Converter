@@ -12,28 +12,31 @@ let rates = {
     USD: 0,
     EUR: 0,
     GBR:0,
-    PLN: 0
+    PLN: 0,
+    UAH:0
 }
 
 const fetchData = async () => {
     const response = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
+    
     const data = await response.json();
    
     console.log(data);
 
-    const {USD, EUR, GBP, PLN} = data.Valute;
+    const {USD, EUR, GBP, PLN, UAH} = data.Valute;
 
     rates = {
        USD: USD.Value,
        EUR: EUR.Value,
        GBP: GBP.Value,
-       PLN: PLN.Value 
+       PLN: PLN.Value, 
+       UAH: UAH.Value
     }
 
     
-    renderComponent(usdValue,USD);
-    renderComponent(eurValue,EUR);
-    renderComponent(gbpValue,GBP);
+    renderComponent(usdValue,USD,UAH);
+    renderComponent(eurValue,EUR,UAH);
+    renderComponent(gbpValue,GBP,UAH);
     
     
 }
@@ -45,8 +48,8 @@ function convertValute () {
     result.value = ((input.value * rates[selectInput.value] )/ rates[selectOutput.value]).toFixed(2)
 }
 
-const renderComponent = (div,valute) => {
-   return div.innerHTML = valute.Value.toFixed(2);
+const renderComponent = (div,valute, UAH) => {
+   return div.innerHTML = ((valute.Value / UAH.Value) * 10).toFixed(2); 
 }
 
 
